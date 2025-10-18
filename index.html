@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSTERAK - Servicios Profesionales de Consultoría</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #4a5568 100%);
+            color: white;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        .header-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 60px 0;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #f7fafc, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { 
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.1);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.4), 0 0 50px rgba(255,255,255,0.3);
+                transform: scale(1.02);
+            }
+        }
+
+        .logo-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: #cbd5e0;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+            opacity: 0.95;
+            font-weight: 400;
+            color: #e2e8f0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(49, 130, 206, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(49, 130, 206, 0.4);
+            color: white;
+            text-decoration: none;
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(26, 54, 93, 0.95);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #90cdf4;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a365d;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 80px;
+            font-weight: 400;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 60px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .experience-highlight {
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(49, 130, 206, 0.2);
+        }
+
+        .experience-highlight h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border-top: 5px solid #3182ce;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: #3182ce;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            color: #2b6cb0;
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            color: #1a365d;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            border-left: 6px solid #3182ce;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            color: #1a365d;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            padding: 12px 0;
+            color: #4a5568;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-list li:hover {
+            color: #3182ce;
+            padding-left: 30px;
+        }
+
+        .service-list li:before {
+            content: "▶";
+            color: #3182ce;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .service-list li:hover:before {
+            transform: translateX(5px);
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .team-member {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-color: #3182ce;
+        }
+
+        .team-member img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 5px solid #3182ce;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover img {
+            transform: scale(1.05);
+            border-color: #2b6cb0;
+        }
+
+        .team-member h4 {
+            font-size: 1.5rem;
+            color: #1a365d;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .team-member .position {
+            color: #3182ce;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .team-member .quote {
+            font-style: italic;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: #90cdf4;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
+        }
+
+        .contact-item i {
+            color: #90cdf4;
+            margin-right: 20px;
+            margin-top: 5px;
+            width: 25px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item span {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .business-hours {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .business-hours h4 {
+            color: #90cdf4;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .business-hours p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .business-hours strong {
+            color: #90cdf4;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background: linear-gradient(45deg, #128c7e, #25d366);
+            transform: scale(1.1);
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4), 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+                letter-spacing: 2px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .features-grid,
+            .services-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .header-content {
+                padding: 40px 0;
+            }
+
+            .cta-button {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Additional modern styling */
+        .highlight-text {
+            color: #3182ce;
+            font-weight: 600;
+        }
+
+        .mission-section {
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(49, 130, 206, 0.2);
+        }
+
+        .mission-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .mission-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="home">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">BOSTERAK</h1>
+                <p class="logo-subtitle">Servicios Profesionales de Consultoría</p>
+                <p class="tagline">Transformamos ideas en soluciones exitosas. Ofrecemos servicios de consultoría especializada para impulsar el crecimiento de tu empresa con estrategias innovadoras y resultados medibles.</p>
+                <a href="#contact" class="cta-button">Contactanos Ahora</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <ul class="nav-links">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#team">Equipo</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegir BOSTERAK?</h2>
+            <p class="section-subtitle">Expertos en consultoría empresarial con resultados comprobados</p>
+            <div class="about-content">
+                <div>
+                    <p class="about-text">
+                        Somos una empresa especializada en servicios de consultoría empresarial, dedicada a brindar soluciones estratégicas que impulsen el crecimiento y la eficiencia de nuestros clientes. Nuestro enfoque se centra en la innovación, la excelencia operativa y la creación de valor sostenible.
+                    </p>
+                    <p class="about-text">
+                        Con años de experiencia en el mercado, hemos desarrollado metodologías probadas que nos permiten identificar oportunidades de mejora y implementar estrategias efectivas. Nuestro equipo multidisciplinario trabaja de manera colaborativa para entregar resultados excepcionales.
+                    </p>
+                </div>
+                <div>
+                    <div class="experience-highlight">
+                        <h3>Excelencia Garantizada</h3>
+                        <p>Resultados medibles y estrategias personalizadas para cada cliente</p>
+                    </div>
+                    <p class="about-text">
+                        Ofrecemos servicios integrales a través de nuestro <strong class="highlight-text">SISTEMA DE CONSULTORÍA INTEGRAL</strong> que abarca todas las áreas críticas del negocio. Somos reconocidos por nuestra capacidad de transformar desafíos en oportunidades de crecimiento.
+                    </p>
+                    <div class="mission-section">
+                        <h3>Nuestra Misión</h3>
+                        <p>Empoderar a las empresas con estrategias innovadoras y soluciones prácticas que generen crecimiento sostenible y ventaja competitiva en el mercado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegir BOSTERAK?</h2>
+            <p class="section-subtitle">Características que nos distinguen en el mercado</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Resultados Comprobados</h3>
+                    <p>Metodologías probadas que han generado mejoras significativas en más de 200 empresas, con un promedio de 35% de incremento en eficiencia operativa.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Equipo Multidisciplinario</h3>
+                    <p>Profesionales especializados en diferentes áreas que trabajan de manera colaborativa para brindar soluciones integrales y personalizadas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovación Constante</h3>
+                    <p>Mantenemos actualizadas nuestras metodologías con las últimas tendencias del mercado y tecnologías emergentes.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Compromiso Total</h3>
+                    <p>Nos involucramos profundamente con nuestros clientes, garantizando un seguimiento continuo y soporte post-implementación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Soluciones integrales para el crecimiento empresarial</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Consultoría Estratégica</h3>
+                    <p>Desarrollamos estrategias personalizadas para optimizar el rendimiento empresarial:</p>
+                    <ul class="service-list">
+                        <li>Análisis de mercado y competencia</li>
+                        <li>Desarrollo de planes estratégicos</li>
+                        <li>Optimización de procesos operativos</li>
+                        <li>Reestructuración organizacional</li>
+                        <li>Análisis de viabilidad de proyectos</li>
+                        <li>Gestión del cambio organizacional</li>
+                        <li>Implementación de mejores prácticas</li>
+                        <li>Medición y seguimiento de KPIs</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Consultoría en Tecnología</h3>
+                    <p>Modernizamos y optimizamos la infraestructura tecnológica de tu empresa:</p>
+                    <ul class="service-list">
+                        <li>Auditoría de sistemas informáticos</li>
+                        <li>Implementación de soluciones digitales</li>
+                        <li>Automatización de procesos</li>
+                        <li>Migración a la nube</li>
+                        <li>Seguridad informática</li>
+                        <li>Análisis de datos y Business Intelligence</li>
+                        <li>Desarrollo de aplicaciones personalizadas</li>
+                        <li>Capacitación del personal</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Consultoría Financiera</h3>
+                    <p>Optimizamos la gestión financiera para maximizar la rentabilidad:</p>
+                    <ul class="service-list">
+                        <li>Análisis financiero integral</li>
+                        <li>Optimización de costos</li>
+                        <li>Planificación presupuestaria</li>
+                        <li>Análisis de rentabilidad</li>
+                        <li>Gestión de riesgos financieros</li>
+                        <li>Estructuración de financiamiento</li>
+                        <li>Valuación de empresas</li>
+                        <li>Due diligence financiero</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <h2 class="section-title">Conoce nuestro equipo</h2>
+            <p class="section-subtitle">Profesionales altamente capacitados y comprometidos con la excelencia</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Carlos Mendoza">
+                    <h4>Carlos Mendoza</h4>
+                    <p class="position">Director Ejecutivo</p>
+                    <p class="quote">"Nuestro compromiso es transformar cada desafío empresarial en una oportunidad de crecimiento sostenible y rentable."</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b332c1ee?w=200&h=200&fit=crop&crop=face" alt="María Rodríguez">
+                    <h4>María Rodríguez</h4>
+                    <p class="position">Directora de Consultoría Estratégica</p>
+                    <p class="quote">"La excelencia en consultoría se logra combinando experiencia, innovación y un profundo entendimiento de las necesidades del cliente."</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Diego Fernández">
+                    <h4>Diego Fernández</h4>
+                    <p class="position">Especialista en Tecnología</p>
+                    <p class="quote">"La tecnología es el motor del crecimiento moderno. Nuestro objetivo es implementar soluciones que generen valor real."</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="Ana Martínez">
+                    <h4>Ana Martínez</h4>
+                    <p class="position">Consultora Senior</p>
+                    <p class="quote">"Cada proyecto es único. Nuestro enfoque personalizado garantiza resultados que superan las expectativas de nuestros clientes."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">¿Listo para transformar tu empresa?</h2>
+            <p class="section-subtitle" style="color: #cbd5e0;">Contáctanos para una consulta gratuita</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Galicia 1632, Mar del Plata, Buenos Aires</span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+5491164736762</span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@bosterak.com</span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-id-card"></i>
+                        <span>CUIL: 23160143959</span>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="business-hours">
+                        <h4>Horarios de Atención</h4>
+                        <p><strong>Horario comercial:</strong></p>
+                        <p>Lunes a Viernes: 9:00 a 18:00 hs</p>
+                        <p>Sábados: 9:00 a 13:00 hs</p>
+                        <br>
+                        <p><strong>Consultas de emergencia:</strong></p>
+                        <p>Disponible 24/7</p>
+                        <p>WhatsApp: +5491164736762</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BOSTERAK. Todos los derechos reservados</p>
+            <p>Servicios profesionales de consultoría empresarial</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scrolling effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(26, 54, 93, 0.98)';
+            } else {
+                nav.style.background = 'rgba(26, 54, 93, 0.95)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and service cards
+        document.querySelectorAll('.feature-card, .service-card, .team-member').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5491164736762?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20consultor%C3%ADa%20de%20BOSTERAK" class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
